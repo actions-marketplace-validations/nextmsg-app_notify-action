@@ -1,0 +1,49 @@
+name: NextMsg Notify
+description: Send a push notification to your phone when a workflow fails, finishes or needs attention. No bots, no account.
+author: NextMsg
+branding:
+  icon: bell
+  color: purple
+
+inputs:
+  key:
+    description: Your NextMsg send key (nextmsg_live_...). Store it as a secret, e.g. secrets.NEXTMSG_KEY.
+    required: true
+  message:
+    description: Message text, up to 640 characters (longer text is cut). Supports **bold**, *italic*, ~~strike~~ and `code`. Default is a summary of the run and its status.
+    required: false
+    default: ''
+  status:
+    description: Job status to report in the default message, usually job.status (success, failure or cancelled).
+    required: false
+    default: ''
+  channel:
+    description: Channel to file the message under in the app (a-z, 0-9, - and _, up to 32 characters).
+    required: false
+    default: ci
+  fail-on-error:
+    description: Fail the step if the message can't be sent. By default a failed notification only logs a warning, so it never breaks your build.
+    required: false
+    default: 'false'
+
+outputs:
+  id:
+    description: Message id when sent.
+    value: ${{ steps.send.outputs.id }}
+  http-status:
+    description: HTTP status code from the NextMsg API (200 when sent).
+    value: ${{ steps.send.outputs.http-status }}
+
+runs:
+  using: composite
+  steps:
+    - id: send
+      shell: bash
+      env:
+        NEXTMSG_KEY: ${{ inputs.key }}
+        NEXTMSG_MESSAGE: ${{ inputs.message }}
+        NEXTMSG_STATUS: ${{ inputs.status }}
+        NEXTMSG_CHANNEL: ${{ inputs.channel }}
+        NEXTMSG_FAIL_ON_ERROR: ${{ inputs.fail-on-error }}
+        NEXTMSG_API: https://api.nextmsg.app
+      run: bash "$GITHUB_ACTION_PATH/send.sh"

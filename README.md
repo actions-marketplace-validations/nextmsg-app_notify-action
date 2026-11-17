@@ -64,10 +64,12 @@ Your own message:
 
 ## Notes
 
-- The key is sent in the `Authorization` header and masked in logs; it never appears in a URL.
+- This action sends the key in the `Authorization` header and masks it in logs, so it never appears in a URL.
 - Runs on Linux, macOS and Windows runners (needs `bash`, `curl` and `jq`, all preinstalled on GitHub-hosted runners).
 - The free plan includes 100 messages a month; Pro is a one-time purchase in the app.
-- Prefer plain `curl`? `curl -d 'Build failed' https://api.nextmsg.app/p/$NEXTMSG_KEY`. More recipes: [nextmsg.app/guides/github-actions](https://nextmsg.app/guides/github-actions).
+- Prefer plain `curl`? Keep the key in a header too:
+  `curl -H "Authorization: Bearer $NEXTMSG_KEY" -d 'Build failed' https://api.nextmsg.app/v1/send`
+  More recipes: [nextmsg.app/guides/github-actions](https://nextmsg.app/guides/github-actions).
 
 ## License
 

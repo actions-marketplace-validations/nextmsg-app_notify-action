@@ -7,7 +7,7 @@ Get a push notification on your phone when a GitHub Actions workflow fails, fini
 ## Setup
 
 1. Install the NextMsg app: [App Store](https://apps.apple.com/app/nextmsg-push-notifications/id6831546010) (iPhone) or [Google Play](https://play.google.com/store/apps/details?id=app.nextmsg) (Android).
-2. In the app, open **Settings → Send key** and copy it (`nextmsg_live_…`).
+2. In the app, open **Settings → Send keys** and tap **Create a key** to get a key just for GitHub Actions (`nextmsg_live_…`, shown once; you can revoke it on its own later). Or copy the Default key.
 3. In your repository: **Settings → Secrets and variables → Actions → New repository secret**, name `NEXTMSG_KEY`, paste the key.
 
 ## Usage
@@ -66,7 +66,7 @@ Your own message:
 
 - This action sends the key in the `Authorization` header and masks it in logs, so it never appears in a URL.
 - Runs on Linux, macOS and Windows runners (needs `bash`, `curl` and `jq`, all preinstalled on GitHub-hosted runners).
-- The free plan includes 100 messages a month; Pro is a one-time purchase in the app.
+- The free plan includes 100 messages a month and 2 send keys; Pro is a one-time purchase in the app (unlimited messages, 20 keys).
 - Prefer plain `curl`? Keep the key in a header too:
   `curl -H "Authorization: Bearer $NEXTMSG_KEY" -d 'Build failed' https://api.nextmsg.app/v1/send`
   More recipes: [nextmsg.app/guides/github-actions](https://nextmsg.app/guides/github-actions).

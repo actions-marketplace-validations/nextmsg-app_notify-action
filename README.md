@@ -4,6 +4,8 @@ Get a push notification on your phone when a GitHub Actions workflow fails, fini
 
 [NextMsg](https://nextmsg.app) is a one-way messenger for AI agents, scripts and servers: they send, you read.
 
+![NextMsg demo: push notifications from curl, CI, and AI agents to your phone](https://raw.githubusercontent.com/nextmsg-app/mcp/main/assets/demo.gif)
+
 ## Setup
 
 1. Install the NextMsg app: [App Store](https://apps.apple.com/app/nextmsg-push-notifications/id6831546010) (iPhone) or [Google Play](https://play.google.com/store/apps/details?id=app.nextmsg) (Android).

@@ -7,7 +7,7 @@ Get a push notification on your phone when a GitHub Actions workflow fails, fini
 ## Setup
 
 1. Install the NextMsg app: [App Store](https://apps.apple.com/app/nextmsg-push-notifications/id6831546010) (iPhone) or [Google Play](https://play.google.com/store/apps/details?id=app.nextmsg) (Android).
-2. In the app, open **Settings → Send keys** and tap **Create a key** to get a key just for GitHub Actions (`nextmsg_live_…`, shown once; you can revoke it on its own later). Or copy the Default key.
+2. In the app, open **Settings → Send keys → Add send key → Copy a key** to get a key just for GitHub Actions (`nextmsg_live_…`, shown once; you can revoke it on its own later). Or copy your starter key.
 3. In your repository: **Settings → Secrets and variables → Actions → New repository secret**, name `NEXTMSG_KEY`, paste the key.
 
 ## Usage
